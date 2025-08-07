@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="logo.png" alt="Snap Branch Logo" width="200" />
+  <img src="logo.png" alt="Snap Branch Logo" width="400" />
 </div>
 
 ## 🫰 Snap Branch: automatic workspace switching for Git branches
