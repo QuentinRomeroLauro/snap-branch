@@ -7,7 +7,7 @@ export class ConfigurationManager {
 
     constructor(context: vscode.ExtensionContext) {
         this.context = context;
-        this.outputChannel = vscode.window.createOutputChannel('Branch Workspace Manager');
+        this.outputChannel = vscode.window.createOutputChannel('Snap Branch');
     }
 
     public async saveCurrentConfiguration(branchName: string): Promise<void> {
@@ -29,12 +29,30 @@ export class ConfigurationManager {
                 'Show Configs'
             ).then(selection => {
                 if (selection === 'Show Configs') {
-                    vscode.commands.executeCommand('branchWorkspaceManager.showConfigs');
+                    vscode.commands.executeCommand('snapBranch.showConfigs');
                 }
             });
         } catch (error) {
             this.outputChannel.appendLine(`Error saving configuration: ${error}`);
             vscode.window.showErrorMessage(`Failed to save configuration: ${error}`);
+        }
+    }
+
+    public async saveCurrentConfigurationQuietly(branchName: string): Promise<void> {
+        try {
+            const config = await this.getCurrentWorkspaceConfiguration();
+            const branchConfig: BranchConfiguration = {
+                branchName,
+                timestamp: Date.now(),
+                openFiles: config.openFiles,
+                editorLayout: config.editorLayout,
+                workspaceSettings: config.workspaceSettings
+            };
+
+            await this.storeBranchConfiguration(branchName, branchConfig);
+            this.outputChannel.appendLine(`Auto-saved configuration for branch: ${branchName}`);
+        } catch (error) {
+            this.outputChannel.appendLine(`Error auto-saving configuration: ${error}`);
         }
     }
 
@@ -186,7 +204,7 @@ export class ConfigurationManager {
     }
 
     public getExtensionConfig(): ExtensionConfig {
-        const config = vscode.workspace.getConfiguration('branchWorkspaceManager');
+        const config = vscode.workspace.getConfiguration('snapBranch');
         return {
             autoSave: config.get('autoSave', true),
             autoRestore: config.get('autoRestore', true),

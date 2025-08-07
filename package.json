@@ -1,9 +1,13 @@
 {
-  "name": "branch-workspace-manager",
-  "displayName": "Branch Workspace Manager",
+  "name": "snap-branch",
+  "displayName": "Snap Branch",
   "description": "Automatically save and restore workspace configurations per Git branch",
   "version": "1.0.0",
-  "publisher": "branch-workspace-manager",
+  "publisher": "snap-branch",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/QuentinRomeroLauro/snap-branch.git"
+  },
   "engines": {
     "vscode": "^1.74.0"
   },
@@ -24,55 +28,55 @@
   "contributes": {
     "commands": [
       {
-        "command": "branchWorkspaceManager.saveConfig",
+        "command": "snapBranch.saveConfig",
         "title": "Save Current Workspace Configuration",
-        "category": "Branch Workspace"
+        "category": "Snap Branch"
       },
       {
-        "command": "branchWorkspaceManager.restoreConfig",
+        "command": "snapBranch.restoreConfig",
         "title": "Restore Workspace Configuration for Current Branch",
-        "category": "Branch Workspace"
+        "category": "Snap Branch"
       },
       {
-        "command": "branchWorkspaceManager.showConfigs",
+        "command": "snapBranch.showConfigs",
         "title": "Show All Branch Configurations",
-        "category": "Branch Workspace"
+        "category": "Snap Branch"
       },
       {
-        "command": "branchWorkspaceManager.deleteConfig",
+        "command": "snapBranch.deleteConfig",
         "title": "Delete Configuration for Current Branch",
-        "category": "Branch Workspace"
+        "category": "Snap Branch"
       },
       {
-        "command": "branchWorkspaceManager.toggle",
+        "command": "snapBranch.toggle",
         "title": "Toggle Auto Branch Configuration",
-        "category": "Branch Workspace"
+        "category": "Snap Branch"
       }
     ],
     "configuration": {
-      "title": "Branch Workspace Manager",
+      "title": "Snap Branch",
       "properties": {
-        "branchWorkspaceManager.autoSave": {
+        "snapBranch.autoSave": {
           "type": "boolean",
           "default": true,
           "description": "Automatically save workspace configuration when switching branches"
         },
-        "branchWorkspaceManager.autoRestore": {
+        "snapBranch.autoRestore": {
           "type": "boolean",
           "default": true,
           "description": "Automatically restore workspace configuration when switching branches"
         },
-        "branchWorkspaceManager.includeOpenFiles": {
+        "snapBranch.includeOpenFiles": {
           "type": "boolean",
           "default": true,
           "description": "Include open files in workspace configuration"
         },
-        "branchWorkspaceManager.includeEditorLayout": {
+        "snapBranch.includeEditorLayout": {
           "type": "boolean",
           "default": true,
           "description": "Include editor layout (split view, etc.) in workspace configuration"
         },
-        "branchWorkspaceManager.showStatusBar": {
+        "snapBranch.showStatusBar": {
           "type": "boolean",
           "default": true,
           "description": "Show branch configuration status in status bar"

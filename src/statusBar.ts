@@ -13,7 +13,7 @@ export class StatusBarManager {
             vscode.StatusBarAlignment.Left,
             100
         );
-        this.statusBarItem.command = 'branchWorkspaceManager.showConfigs';
+        this.statusBarItem.command = 'snapBranch.showConfigs';
         this.updateVisibility();
     }
 

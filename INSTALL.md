@@ -6,7 +6,7 @@
 
 ```bash
 # Navigate to the extension directory
-cd branch-workspace-manager
+cd snap-branch
 
 # Install dependencies (if not already done)
 npm install
@@ -33,7 +33,7 @@ npm install -g vsce
 vsce package
 
 # Install the generated .vsix file
-code --install-extension branch-workspace-manager-1.0.0.vsix
+code --install-extension snap-branch-1.0.0.vsix
 ```
 
 ## Testing the Extension
@@ -44,32 +44,33 @@ code --install-extension branch-workspace-manager-1.0.0.vsix
    - Create or open a folder with a Git repository
    - The status bar should show your current branch
 
-2. **Save Configuration**
+2. **Setup Initial Configuration**
    - Open some files
    - Adjust workspace settings (theme, font size, etc.)
-   - Run command: `Branch Workspace: Save Current Workspace Configuration`
+   - Your configuration will be automatically saved when you switch branches
 
 3. **Switch Branches**
    - Use `git checkout` or VS Code's Git integration to switch branches
-   - The extension should automatically save current config and restore the new branch's config
+   - The extension automatically saves your current configuration and restores the new branch's configuration
+   - No manual intervention required!
 
-4. **Manual Commands**
-   - Test all commands via Command Palette (`Ctrl+Shift+P`):
-     - `Branch Workspace: Save Current Workspace Configuration`
-     - `Branch Workspace: Show All Branch Configurations`
-     - `Branch Workspace: Restore Workspace Configuration`
-     - `Branch Workspace: Toggle Auto Branch Configuration`
+4. **Manual Commands (Optional)**
+   - While configurations are saved automatically, you can still use manual commands via Command Palette (`Ctrl+Shift+P`):
+     - `Snap Branch: Save Current Workspace Configuration` (manual save)
+     - `Snap Branch: Show All Branch Configurations`
+     - `Snap Branch: Restore Workspace Configuration`
+     - `Snap Branch: Toggle Auto Branch Configuration`
 
 ### Advanced Testing
 
 1. **Multiple Branches**
    - Create several branches
    - Configure different workspace settings for each
-   - Test switching between them
+   - Test switching between them - configurations save and restore automatically
 
 2. **Settings Verification**
    - Open Settings (`Ctrl+,`)
-   - Search for "Branch Workspace Manager"
+   - Search for "Snap Branch"
    - Test different configuration options
 
 3. **Error Handling**
@@ -80,7 +81,7 @@ code --install-extension branch-workspace-manager-1.0.0.vsix
 ## Extension Structure
 
 ```
-branch-workspace-manager/
+snap-branch/
 ├── package.json          # Extension manifest
 ├── tsconfig.json         # TypeScript configuration
 ├── README.md             # User documentation
@@ -109,7 +110,7 @@ branch-workspace-manager/
 
 1. Set breakpoints in TypeScript source files
 2. Press `F5` to start debugging
-3. Check "Output" panel > "Branch Workspace Manager" for logs
+3. Check "Output" panel > "Snap Branch" for logs
 4. Use VS Code Developer Tools for additional debugging
 
 ## Troubleshooting

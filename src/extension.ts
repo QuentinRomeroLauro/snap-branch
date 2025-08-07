@@ -4,7 +4,7 @@ import { ConfigurationManager } from './configurationManager';
 import { StatusBarManager } from './statusBar';
 
 export function activate(context: vscode.ExtensionContext) {
-    console.log('Branch Workspace Manager extension is now active');
+    console.log('Snap Branch extension is now active');
 
     const configManager = new ConfigurationManager(context);
     const gitMonitor = new GitMonitor();
@@ -16,14 +16,25 @@ export function activate(context: vscode.ExtensionContext) {
     const currentBranch = gitMonitor.getCurrentBranch();
     statusBar.updateBranch(currentBranch);
 
+    // Track the current branch for auto-saving
+    let previousBranch = currentBranch;
+
     // Monitor branch changes
     const branchChangeDisposable = gitMonitor.onBranchChange(async (newBranch: string) => {
         const config = configManager.getExtensionConfig();
         
+        // Auto-save configuration for the previous branch if enabled
+        if (isAutoSwitchEnabled && config.autoSave && previousBranch) {
+            await configManager.saveCurrentConfigurationQuietly(previousBranch);
+        }
+        
+        // Auto-restore configuration for the new branch if enabled
         if (isAutoSwitchEnabled && config.autoRestore) {
             await configManager.restoreConfiguration(newBranch);
         }
         
+        // Update tracking variables
+        previousBranch = newBranch;
         statusBar.updateBranch(newBranch);
         
         vscode.window.setStatusBarMessage(
@@ -34,7 +45,7 @@ export function activate(context: vscode.ExtensionContext) {
 
     // Register commands
     const saveConfigCommand = vscode.commands.registerCommand(
-        'branchWorkspaceManager.saveConfig',
+        'snapBranch.saveConfig',
         async () => {
             const currentBranch = gitMonitor.getCurrentBranch();
             if (!currentBranch) {
@@ -48,7 +59,7 @@ export function activate(context: vscode.ExtensionContext) {
     );
 
     const restoreConfigCommand = vscode.commands.registerCommand(
-        'branchWorkspaceManager.restoreConfig',
+        'snapBranch.restoreConfig',
         async () => {
             const currentBranch = gitMonitor.getCurrentBranch();
             if (!currentBranch) {
@@ -61,7 +72,7 @@ export function activate(context: vscode.ExtensionContext) {
     );
 
     const showConfigsCommand = vscode.commands.registerCommand(
-        'branchWorkspaceManager.showConfigs',
+        'snapBranch.showConfigs',
         async () => {
             const allConfigs = await configManager.getAllBranchConfigurations();
             const configEntries = Object.entries(allConfigs);
@@ -114,7 +125,7 @@ export function activate(context: vscode.ExtensionContext) {
     );
 
     const deleteConfigCommand = vscode.commands.registerCommand(
-        'branchWorkspaceManager.deleteConfig',
+        'snapBranch.deleteConfig',
         async () => {
             const currentBranch = gitMonitor.getCurrentBranch();
             if (!currentBranch) {
@@ -136,14 +147,14 @@ export function activate(context: vscode.ExtensionContext) {
     );
 
     const toggleCommand = vscode.commands.registerCommand(
-        'branchWorkspaceManager.toggle',
+        'snapBranch.toggle',
         async () => {
             isAutoSwitchEnabled = !isAutoSwitchEnabled;
             statusBar.setEnabled(isAutoSwitchEnabled);
             
             const status = isAutoSwitchEnabled ? 'enabled' : 'disabled';
             vscode.window.showInformationMessage(
-                `Branch workspace auto-switching ${status}`
+                `Snap Branch auto-switching ${status}`
             );
         }
     );
@@ -162,25 +173,25 @@ export function activate(context: vscode.ExtensionContext) {
     );
 
     // Show welcome message on first activation
-    const isFirstActivation = context.globalState.get('branchWorkspaceManager.firstActivation', true);
+    const isFirstActivation = context.globalState.get('snapBranch.firstActivation', true);
     if (isFirstActivation) {
-        context.globalState.update('branchWorkspaceManager.firstActivation', false);
+        context.globalState.update('snapBranch.firstActivation', false);
         
         if (gitMonitor.isGitRepository()) {
             vscode.window.showInformationMessage(
-                'Branch Workspace Manager is now active! Your workspace configurations will be automatically managed per Git branch.',
+                'Snap Branch is now active! Your workspace configurations will be automatically managed per Git branch.',
                 'Show Commands'
             ).then(selection => {
                 if (selection === 'Show Commands') {
                     vscode.commands.executeCommand('workbench.action.showCommands')
                         .then(() => {
-                            vscode.commands.executeCommand('workbench.action.quickOpen', '>Branch Workspace');
+                            vscode.commands.executeCommand('workbench.action.quickOpen', '>Snap Branch');
                         });
                 }
             });
         } else {
             vscode.window.showInformationMessage(
-                'Branch Workspace Manager is active but no Git repository detected in current workspace.'
+                'Snap Branch is active but no Git repository detected in current workspace.'
             );
         }
     }
@@ -193,5 +204,5 @@ export function activate(context: vscode.ExtensionContext) {
 }
 
 export function deactivate() {
-    console.log('Branch Workspace Manager extension is now deactivated');
+    console.log('Snap Branch extension is now deactivated');
 }

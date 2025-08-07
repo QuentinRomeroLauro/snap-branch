@@ -1,4 +1,4 @@
-# Branch Workspace Manager
+# Snap Branch
 
 A VS Code extension that automatically saves and restores workspace configurations per Git branch. Perfect for developers who work on multiple features and want different settings, open files, and layouts for each branch.
 
@@ -17,8 +17,8 @@ A VS Code extension that automatically saves and restores workspace configuratio
    - Restores the workspace configuration for the new branch (if one exists)
 
 2. **Manual Mode**: Use commands to manually save and restore configurations:
-   - `Branch Workspace: Save Current Workspace Configuration`
-   - `Branch Workspace: Restore Workspace Configuration for Current Branch`
+   - `Snap Branch: Save Current Workspace Configuration`
+   - `Snap Branch: Restore Workspace Configuration for Current Branch`
 
 ## What Gets Saved
 
@@ -30,25 +30,25 @@ For each branch, the extension can save:
 
 ## Configuration
 
-Open VS Code settings and search for "Branch Workspace Manager":
+Open VS Code settings and search for "Snap Branch":
 
 | Setting | Default | Description |
 |---------|---------|-------------|
-| `branchWorkspaceManager.autoSave` | `true` | Automatically save workspace configuration when switching branches |
-| `branchWorkspaceManager.autoRestore` | `true` | Automatically restore workspace configuration when switching branches |
-| `branchWorkspaceManager.includeOpenFiles` | `true` | Include open files in workspace configuration |
-| `branchWorkspaceManager.includeEditorLayout` | `true` | Include editor layout in workspace configuration |
-| `branchWorkspaceManager.showStatusBar` | `true` | Show branch configuration status in status bar |
+| `snapBranch.autoSave` | `true` | Automatically save workspace configuration when switching branches |
+| `snapBranch.autoRestore` | `true` | Automatically restore workspace configuration when switching branches |
+| `snapBranch.includeOpenFiles` | `true` | Include open files in workspace configuration |
+| `snapBranch.includeEditorLayout` | `true` | Include editor layout in workspace configuration |
+| `snapBranch.showStatusBar` | `true` | Show branch configuration status in status bar |
 
 ## Commands
 
 Access these commands via Command Palette (`Ctrl+Shift+P` / `Cmd+Shift+P`):
 
-- **Branch Workspace: Save Current Workspace Configuration** - Manually save current workspace state
-- **Branch Workspace: Restore Workspace Configuration for Current Branch** - Manually restore configuration
-- **Branch Workspace: Show All Branch Configurations** - View and manage all saved configurations
-- **Branch Workspace: Delete Configuration for Current Branch** - Remove configuration for current branch
-- **Branch Workspace: Toggle Auto Branch Configuration** - Enable/disable automatic switching
+- **Snap Branch: Save Current Workspace Configuration** - Manually save current workspace state
+- **Snap Branch: Restore Workspace Configuration for Current Branch** - Manually restore configuration
+- **Snap Branch: Show All Branch Configurations** - View and manage all saved configurations
+- **Snap Branch: Delete Configuration for Current Branch** - Remove configuration for current branch
+- **Snap Branch: Toggle Auto Branch Configuration** - Enable/disable automatic switching
 
 ## Status Bar
 
@@ -123,7 +123,7 @@ Different branches might need different configurations:
 
 1. Ensure you're in a Git repository
 2. Check that the Git extension is enabled
-3. Open Output panel and select "Branch Workspace Manager" for logs
+3. Open Output panel and select "Snap Branch" for logs
 
 ### Configurations Not Saving
 
