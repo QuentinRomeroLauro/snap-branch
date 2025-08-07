@@ -146,7 +146,7 @@ Contributions welcome! Please submit a pull requests.
 
 ## License
 
-MIT License - see LICENSE file for details.
+MIT License - see [LICENSE](LICENSE) file for details.
 
 ## Changelog
 
