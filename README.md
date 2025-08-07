@@ -1,6 +1,9 @@
-# Snap Branch
+<div align="center">
+  <img src="logo.png" alt="Snap Branch Logo" width="250" />
+  <h1>Snap Branch</h1>
+</div>
 
-A VS Code extension that automatically saves and restores workspace configurations per Git branch. Perfect for developers who work on multiple features and want different settings, open files, and layouts for each branch.
+A VS Code extension that automatically saves and restores workspace configurations per Git branch. As AI allows developers to context switch faster, reducing cognitively load of switching contexts helps developers to work faster.
 
 ## Features
 
@@ -139,7 +142,7 @@ Different branches might need different configurations:
 
 ## Contributing
 
-Contributions welcome! Please read the contributing guidelines and submit pull requests.
+Contributions welcome! Please submit a pull requests.
 
 ## License
 
