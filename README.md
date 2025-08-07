@@ -2,8 +2,7 @@
   <img src="logo.png" alt="Snap Branch Logo" width="200" />
 </div>
 
-# Snap Branch - automatic workspace switching for Git branches
----
+## 🫰 Snap Branch: automatic workspace switching for Git branches
 
 
 A VS Code extension that automatically saves and restores workspace configurations per Git branch. As AI allows developers to context switch faster, reducing cognitively load of switching contexts helps developers to work faster.
