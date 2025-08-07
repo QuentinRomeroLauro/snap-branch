@@ -7,6 +7,12 @@
 
 A VS Code extension that automatically saves and restores workspace configurations per Git branch. As AI allows developers to context switch faster, reducing cognitively load of switching contexts helps developers to work faster.
 
+<div align="center">
+
+[![Install from VS Code Marketplace](https://img.shields.io/badge/Install-VS%20Code%20Marketplace-blue?style=for-the-badge&logo=visual-studio-code)](https://marketplace.visualstudio.com/items?itemName=QuentinRomeroLauro.snap-branch)
+
+</div>
+
 ## Features
 
 - 🔄 **Automatic Branch Detection**: Monitors Git branch changes and automatically switches configurations
@@ -105,9 +111,7 @@ Different branches might need different configurations:
 4. Press `F5` in VS Code to launch extension development host
 5. Or package with `vsce package` and install the `.vsix` file
 
-### From Marketplace
 
-*(Coming soon - will be published to VS Code Marketplace)*
 
 ## Requirements
 
