@@ -1,7 +1,10 @@
 <div align="center">
-  <img src="logo.png" alt="Snap Branch Logo" width="250" />
-  <h1>Snap Branch</h1>
+  <img src="logo.png" alt="Snap Branch Logo" width="200" />
 </div>
+
+# Snap Branch - automatic workspace switching for Git branches
+---
+
 
 A VS Code extension that automatically saves and restores workspace configurations per Git branch. As AI allows developers to context switch faster, reducing cognitively load of switching contexts helps developers to work faster.
 
@@ -112,33 +115,6 @@ Different branches might need different configurations:
 - VS Code 1.74.0 or higher
 - Git repository in workspace
 - Git extension enabled (built-in)
-
-## Known Limitations
-
-- Only works with Git repositories
-- Editor layout restoration is simplified (basic active/visible editor tracking)
-- Some VS Code settings may not be fully restored due to API limitations
-- Large numbers of open files may impact performance
-
-## Troubleshooting
-
-### Extension Not Working
-
-1. Ensure you're in a Git repository
-2. Check that the Git extension is enabled
-3. Open Output panel and select "Snap Branch" for logs
-
-### Configurations Not Saving
-
-1. Check extension settings (auto-save enabled?)
-2. Verify workspace has write permissions
-3. Try manual save command first
-
-### Branch Changes Not Detected
-
-1. Ensure Git operations are done through VS Code or terminal
-2. Check if Git extension is detecting branch changes
-3. Try refreshing the workspace
 
 ## Contributing
 
