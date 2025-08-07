@@ -96,5 +96,14 @@
   },
   "extensionDependencies": [
     "vscode.git"
-  ]
+  ],
+  "icon": "logo.png",
+  "galleryBanner": {
+    "color": "#1e90ff",
+    "theme": "dark"
+  },
+  "homepage": "https://github.com/QuentinRomeroLauro/snap-branch",
+  "bugs": {
+    "url": "https://github.com/QuentinRomeroLauro/snap-branch/issues"
+  }
 }
