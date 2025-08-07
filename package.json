@@ -3,7 +3,7 @@
   "displayName": "Snap Branch",
   "description": "Automatically save and restore workspace configurations per Git branch",
   "version": "1.0.0",
-  "publisher": "snap-branch",
+  "publisher": "QuentinRomeroLauro",
   "repository": {
     "type": "git",
     "url": "https://github.com/QuentinRomeroLauro/snap-branch.git"
