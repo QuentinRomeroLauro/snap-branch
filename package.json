@@ -1,0 +1,96 @@
+{
+  "name": "branch-workspace-manager",
+  "displayName": "Branch Workspace Manager",
+  "description": "Automatically save and restore workspace configurations per Git branch",
+  "version": "1.0.0",
+  "publisher": "branch-workspace-manager",
+  "engines": {
+    "vscode": "^1.74.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "keywords": [
+    "git",
+    "branch",
+    "workspace",
+    "configuration",
+    "settings"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "branchWorkspaceManager.saveConfig",
+        "title": "Save Current Workspace Configuration",
+        "category": "Branch Workspace"
+      },
+      {
+        "command": "branchWorkspaceManager.restoreConfig",
+        "title": "Restore Workspace Configuration for Current Branch",
+        "category": "Branch Workspace"
+      },
+      {
+        "command": "branchWorkspaceManager.showConfigs",
+        "title": "Show All Branch Configurations",
+        "category": "Branch Workspace"
+      },
+      {
+        "command": "branchWorkspaceManager.deleteConfig",
+        "title": "Delete Configuration for Current Branch",
+        "category": "Branch Workspace"
+      },
+      {
+        "command": "branchWorkspaceManager.toggle",
+        "title": "Toggle Auto Branch Configuration",
+        "category": "Branch Workspace"
+      }
+    ],
+    "configuration": {
+      "title": "Branch Workspace Manager",
+      "properties": {
+        "branchWorkspaceManager.autoSave": {
+          "type": "boolean",
+          "default": true,
+          "description": "Automatically save workspace configuration when switching branches"
+        },
+        "branchWorkspaceManager.autoRestore": {
+          "type": "boolean",
+          "default": true,
+          "description": "Automatically restore workspace configuration when switching branches"
+        },
+        "branchWorkspaceManager.includeOpenFiles": {
+          "type": "boolean",
+          "default": true,
+          "description": "Include open files in workspace configuration"
+        },
+        "branchWorkspaceManager.includeEditorLayout": {
+          "type": "boolean",
+          "default": true,
+          "description": "Include editor layout (split view, etc.) in workspace configuration"
+        },
+        "branchWorkspaceManager.showStatusBar": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show branch configuration status in status bar"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.74.0",
+    "@types/node": "16.x",
+    "typescript": "^4.9.4"
+  },
+  "extensionDependencies": [
+    "vscode.git"
+  ]
+}
