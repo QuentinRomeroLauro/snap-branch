@@ -14,6 +14,7 @@ export interface ExtensionConfig {
     includeOpenFiles: boolean;
     includeEditorLayout: boolean;
     showStatusBar: boolean;
+    includeWorkspaceSettings: boolean;
 }
 
 export interface GitRepository {
