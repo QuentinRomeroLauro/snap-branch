@@ -144,6 +144,9 @@ MIT License - see [LICENSE](LICENSE) file for details.
 
 ## Changelog
 
+### 1.0.2
+- **IMPROVED**: Small bug fix
+
 ### 1.0.1
 
 - **BREAKING CHANGE**: Made extension non-intrusive by default
