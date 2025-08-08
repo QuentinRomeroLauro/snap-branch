@@ -99,28 +99,30 @@ export class ConfigurationManager {
             visibleEditors: vscode.window.visibleTextEditors.map(editor => editor.document.uri.fsPath)
         } : undefined;
 
-        // Get workspace settings (simplified - just a few key settings)
+        // Get workspace settings only if explicitly enabled (non-intrusive by default)
         const workspaceSettings: { [key: string]: any } = {};
-        const config = vscode.workspace.getConfiguration();
-        
-        // Store some common settings that users might want to vary by branch
-        const settingsToSave = [
-            'editor.fontSize',
-            'editor.wordWrap',
-            'editor.minimap.enabled',
-            'workbench.colorTheme',
-            'files.exclude',
-            'search.exclude',
-            'editor.rulers',
-            'problems.decorations.enabled'
-        ];
+        if (extensionConfig.includeWorkspaceSettings) {
+            const config = vscode.workspace.getConfiguration();
+            
+            // Store some common settings that users might want to vary by branch
+            const settingsToSave = [
+                'editor.fontSize',
+                'editor.wordWrap',
+                'editor.minimap.enabled',
+                'workbench.colorTheme',
+                'files.exclude',
+                'search.exclude',
+                'editor.rulers',
+                'problems.decorations.enabled'
+            ];
 
-        settingsToSave.forEach(setting => {
-            const value = config.get(setting);
-            if (value !== undefined) {
-                workspaceSettings[setting] = value;
-            }
-        });
+            settingsToSave.forEach(setting => {
+                const value = config.get(setting);
+                if (value !== undefined) {
+                    workspaceSettings[setting] = value;
+                }
+            });
+        }
 
         return {
             openFiles,
@@ -132,13 +134,15 @@ export class ConfigurationManager {
     private async applyConfiguration(branchConfig: BranchConfiguration): Promise<void> {
         const extensionConfig = this.getExtensionConfig();
 
-        // Restore workspace settings
-        const config = vscode.workspace.getConfiguration();
-        for (const [key, value] of Object.entries(branchConfig.workspaceSettings)) {
-            try {
-                await config.update(key, value, vscode.ConfigurationTarget.Workspace);
-            } catch (error) {
-                this.outputChannel.appendLine(`Failed to update setting ${key}: ${error}`);
+        // Only restore workspace settings if explicitly enabled (non-intrusive by default)
+        if (extensionConfig.includeWorkspaceSettings && branchConfig.workspaceSettings) {
+            const config = vscode.workspace.getConfiguration();
+            for (const [key, value] of Object.entries(branchConfig.workspaceSettings)) {
+                try {
+                    await config.update(key, value, vscode.ConfigurationTarget.Workspace);
+                } catch (error) {
+                    this.outputChannel.appendLine(`Failed to update setting ${key}: ${error}`);
+                }
             }
         }
 
@@ -210,7 +214,8 @@ export class ConfigurationManager {
             autoRestore: config.get('autoRestore', true),
             includeOpenFiles: config.get('includeOpenFiles', true),
             includeEditorLayout: config.get('includeEditorLayout', true),
-            showStatusBar: config.get('showStatusBar', true)
+            showStatusBar: config.get('showStatusBar', true),
+            includeWorkspaceSettings: config.get('includeWorkspaceSettings', false)
         };
     }
 

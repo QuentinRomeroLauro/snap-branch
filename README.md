@@ -35,9 +35,23 @@ A VS Code extension that automatically saves and restores workspace configuratio
 
 For each branch, the extension can save:
 
-- **Open Files**: List of currently open files in the editor
-- **Editor Layout**: Active editor and visible editors
-- **Workspace Settings**: Key settings like font size, theme, rulers, exclusions, etc.
+- **Open Files**: List of currently open files in the editor (always included when enabled)
+- **Editor Layout**: Active editor and visible editors (always included when enabled)
+- **Workspace Settings**: Key settings like font size, theme, rulers, exclusions, etc. (opt-in only)
+
+### Non-Intrusive by Default
+
+**Important**: By default, Snap Branch operates completely in the background without modifying any workspace files. It only manages:
+- Which files are open in your editor
+- Your editor layout (split views, active editor)
+
+**Workspace settings are NOT modified** unless you explicitly enable `snapBranch.includeWorkspaceSettings`. This means:
+- ✅ No `.vscode/settings.json` modifications by default
+- ✅ No workspace configuration files are touched
+- ✅ Completely transparent operation
+- ✅ Safe to use in any project without side effects
+
+If you want the extension to also save and restore workspace settings (like theme, font size, etc.), you can enable `snapBranch.includeWorkspaceSettings` in your VS Code settings.
 
 ## Configuration
 
@@ -50,6 +64,7 @@ Open VS Code settings and search for "Snap Branch":
 | `snapBranch.includeOpenFiles` | `true` | Include open files in workspace configuration |
 | `snapBranch.includeEditorLayout` | `true` | Include editor layout in workspace configuration |
 | `snapBranch.showStatusBar` | `true` | Show branch configuration status in status bar |
+| `snapBranch.includeWorkspaceSettings` | `false` | Include workspace settings in configuration (will modify .vscode/settings.json when enabled) |
 
 ## Commands
 
@@ -128,6 +143,14 @@ Contributions welcome! Please submit a pull requests.
 MIT License - see [LICENSE](LICENSE) file for details.
 
 ## Changelog
+
+### 1.0.1
+
+- **BREAKING CHANGE**: Made extension non-intrusive by default
+- **NEW**: Added `snapBranch.includeWorkspaceSettings` setting (default: false)
+- **IMPROVED**: Extension no longer modifies `.vscode/settings.json` by default
+- **IMPROVED**: Completely transparent operation - only manages open files and editor layout
+- **IMPROVED**: Safer for use in any project without side effects
 
 ### 1.0.0
 
